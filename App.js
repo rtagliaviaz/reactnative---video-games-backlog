@@ -1,21 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { NavigationContainer, Link } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StyleSheet } from "react-native";
+import Backlog from "./components/Backlog";
+import Games from "./components/Games";
+import Home from "./components/Home";
+const Stack = createNativeStackNavigator();
 
-export default function App() {
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name='Games Backlog'
+          component={Home}
+          options={{
+            headerStyle: {
+              backgroundColor: "#141414",
+            },
+            headerTintColor: "#fff",
+          }}
+        />
+        <Stack.Screen name='Search' component={Games} options={{
+            headerStyle: {
+              backgroundColor: "#141414",
+            },
+            headerTintColor: "#fff",
+          }}/>
+        <Stack.Screen name='Backlog' component={Backlog} options={{
+            headerStyle: {
+              backgroundColor: "#141414",
+            },
+            headerTintColor: "#fff",
+          }}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
